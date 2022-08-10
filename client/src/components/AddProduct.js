@@ -16,7 +16,7 @@ const AddProduct = () => {
             headers: {
                 'Content-Type' : 'application/json',
             },
-            body: JSON.stringify({ name, price, owner: 'userName',})
+            body: JSON.stringify({ name, price, owner: localStorage.getItem('userName')})
         }).then((response) => {
             if(response.ok){
                 alert("product added!");

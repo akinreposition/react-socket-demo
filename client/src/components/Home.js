@@ -38,7 +38,7 @@ const Home = () => {
                 required
                 minLength={6}
                 />
-                <button className='home_cta'>SIGN IN</button>
+                <button className='home__cta'>SIGN IN</button>
             </form>
         </div>
     );

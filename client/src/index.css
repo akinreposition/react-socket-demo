@@ -1,5 +1,6 @@
 /* --------General Stylesheet for the project ------*/
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -20,9 +21,12 @@ body {
   justify-content: space-between;
   padding: 20px;
   margin-bottom: 30px;
+  list-style: none;
+  
 }
 .navbar .header {
   width: 70%;
+  text-decoration: none;
 }
 
 /* --------Stylesheet for the Home component ------*/
