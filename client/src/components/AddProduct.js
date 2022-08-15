@@ -11,18 +11,24 @@ const AddProduct = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log({ name, price, owner: localStorage.getItem('userName') });
-        fetch("https://react-socket-demo-default-rtdb.firebaseio.com/auction/addProducts.json",{
-            method: 'POST',
-            headers: {
-                'Content-Type' : 'application/json',
-            },
-            body: JSON.stringify({ name, price, owner: localStorage.getItem('userName')})
-        }).then((response) => {
-            if(response.ok){
-                alert("product added!");
-                navigate('/products');
-            }
-        })
+        // fetch("https://react-socket-demo-default-rtdb.firebaseio.com/auction/addProducts.json",{
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type' : 'application/json',
+        //     },
+        //     body: JSON.stringify({ name, price, owner: localStorage.getItem('userName')})
+        // }).then((response) => {
+        //     if(response.ok){
+        //         alert("product added!");
+        //         navigate('/products');
+        //     }
+        // })
+        WebSocket.emit('addProduct', {
+            name,
+            price,
+            owner: localStorage.getItem('userName'),
+        });
+        navigate('/products')
     };
 
     return (
