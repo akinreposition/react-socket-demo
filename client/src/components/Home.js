@@ -2,7 +2,8 @@ import React,{ useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-    const [userName, setUserName ] = useState('');
+    const [ userName, setUserName ] = useState('');
+    const [ password, setPassword ] =useState('');
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
@@ -15,7 +16,7 @@ const Home = () => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({username : userName}),
+            body: JSON.stringify({username : userName, password}),
         }).then((Response) =>{
             if(Response.ok) {
                 navigate('/products');
@@ -28,16 +29,34 @@ const Home = () => {
     return(
         <div>
             <form className='home__form' onSubmit={handleSubmit}>
-                <label htmlFor='username'>Enter your username</label>
-                <input 
-                type="text"
-                name="username"
-                className="home__input"
-                value={userName}
-                onChange={e => setUserName(e.target.value)}
-                required
-                minLength={6}
-                />
+                <div>
+                    {/* <label htmlFor='username: ' className='home_label'>Username</label> */}
+                        <input 
+                            type="text"
+                            name="username"
+                            className="home__input"
+                            value={userName}
+                            placeholder="User name"
+                            onChange={e => setUserName(e.target.value)}
+                            required
+                            minLength={6}
+                        />
+                </div>
+
+                <div>
+                    {/* <label htmlFor='password: ' className='home_label'>Password</label> */}
+                        <input 
+                            type="text"
+                            name="password"
+                            className="home__input"
+                            value={password}
+                            placeholder="Password"
+                            onChange={e => setPassword(e.target.value)}
+                            required
+                            minLength={8}
+                        />
+                </div>
+
                 <button className='home__cta'>SIGN IN</button>
             </form>
         </div>

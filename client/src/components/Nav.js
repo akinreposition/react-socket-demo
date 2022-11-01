@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import auctions64 from "../assest/auctions64.png";
+import auctions64 from "../asset/auctions64.png";
 
 const Nav = ({socket}) => {
     const [notification, setNotification ] = useState('');
