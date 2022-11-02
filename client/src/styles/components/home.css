@@ -48,50 +48,40 @@
   }
 
 
-  @media (min-width: 567px) {
-    .home__form {
-        box-sizing: border-box;
-        width: 30%;
-        height: 40vh;
-        margin: 10% auto;
-        padding: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        
-        background: #FFFFFF;
-        border: 1px solid rgba(196, 196, 196, 0.5);
-        box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-      }
-    
-      .home_label {
-        color: grey;
-        margin-right: 25px;
-      }
-    
-      .home__input {
-        width: 60%;
-        padding: 10px;
-        border-radius: 5px;
-        margin: 15px 0;
-        outline: #ABED0C;
-        border: 1px solid #576f72;
-      }
-      .home__cta input :hover :active{
-        outline: #F0A659;
-      }
-    
-      .home__cta {
-        width: 170px;
-        margin-left: 85px;
-        padding: 10px;
-        font-size: 16px;
-        outline: none;
-        border: none;
-        cursor: pointer;
-        color: #fff;
-        background-color: rgb(67, 143, 67);
-      }
+@media (min-width: 567px) {
+  .home__form {
+    width: 35%;
+    /* height: 50vh; */
+    margin: 10% auto;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
   }
+    
+  .home__input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 15px 0;
+    outline: #ABED0C;
+    border: 1px solid #576f72;
+  }
+
+  .home__cta input :hover :active{
+    outline: #F0A659;
+  }
+    
+  .home__cta {
+    width: 180px;
+    /* margin-left: 85px; */
+    padding: 10px;
+    font-size: 16px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: #fff;
+    background-color: rgb(67, 143, 67);
+  }
+}
