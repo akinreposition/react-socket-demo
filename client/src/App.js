@@ -17,7 +17,7 @@ const socket = socketIO.connect('http://localhost:4000');
 function App ()  {
   return (
     <Router>
-      <div className="container">
+      <div>
         {/* Nav is available at the top of all the pages as a navigation bar */}
         <Nav socket={socket}/>
         <Routes>

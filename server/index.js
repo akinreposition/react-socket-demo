@@ -1,8 +1,9 @@
+const path = require('path');
 const express = require('express');
-const app = express();
-const PORT = 4000;
-const fs = require('fs');
-// const axios = require('axios');
+const port = process.env.PORT || 4000;
+// const fs = require('fs');
+const { errorHandler } = require('./middleware/errorMiddleware');
+const connectDB = require('./config/db');
 const http = require('http').Server(app);
 const cors = require('cors');
 const socketIO = require('socket.io')(http, {
@@ -13,9 +14,14 @@ const socketIO = require('socket.io')(http, {
 
 //Gets the JSON file and parse the file into JavaScript object
 const rawData = fs.readFileSync('data.json');
-// const rawData = axios.get("https://react-socket-demo-default-rtdb.firebaseio.com/auction/")
+// const rawData = fetch("https://react-socket-demo-default-rtdb.firebaseio.com/auction/")
 const productData = JSON.parse(rawData);
 
+connectDB();
+
+const app = express();
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 socketIO.on('connection', (socket) => {
@@ -65,11 +71,30 @@ socketIO.on('connection', (socket) => {
   })
 });
 
-//Returns the JSON file
-app.get('/api', (req, res) => {
-  res.json(productData);
-});
+// Serve frontend
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../client/build')));
 
-http.listen(PORT, () => {
-  console.log(`Server listening on ${PORT}`);
+  app.get('*', (req, res) =>
+    res.sendFile(
+      path.resolve(__dirname, '../', 'client', 'build', 'index.html')
+    )
+  );
+} else {
+  app.get('/', (req, res) => res.send('Please set to production'));
+}
+
+
+app.use('/api/bidding', require('./routes/biddingRoutes'));
+app.use('/api/users', require('./routes/userRoutes'));
+
+//Returns the JSON file
+// app.get('/api', (req, res) => {
+//   res.json(productData);
+// });
+
+app.use(errorHandler);
+
+http.listen(port, () => {
+  console.log(`Server listening on ${post}`);
 });
