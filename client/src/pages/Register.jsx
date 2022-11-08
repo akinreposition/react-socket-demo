@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { FaUser } from 'react-icons/fa'
 
-function Register() {
+const Register = () => {
   const [ formData, setFormData ] = useState({
     name:'',
     email:'',
@@ -9,9 +10,81 @@ function Register() {
   });
 
   const { name, email, password, password2 } = formData;
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value})
+  }
+  // const handleChange = (e) => {
+  //   setFormData((prevState) => (
+  //     {
+  //       ...prevState,
+  //       [e.target.name]: e.target.value
+  //     }
+  //   ))
+  // };
+  const onSubmit = (e) => {
+    e.preventDeualt();  
+  }
   return (
     <>
-    
+      <section className='heading container'>
+        <h1>
+          <FaUser /> Register
+        </h1>
+        <p>Please create an account</p>
+      </section>
+
+      <section className='form'>
+        <form onSubmit={onSubmit}>
+           <div className='form-group'>
+            <input 
+              type="text"
+              className="form-control"
+              name="name"
+              value={name}
+              placeholder="Enter your name"
+              onChange={handleChange}
+
+            />
+           </div>
+           <div className='form-group'>
+            <input 
+              type="email"
+              className="form-control"
+              name='email'
+              value={email}
+              placeholder="Enter your email"
+              onChange={handleChange}
+
+            />
+           </div>
+           <div className='form-group'>
+            <input 
+              type="passowrd"
+              className="form-control"
+              name="password"
+              value={password}
+              placeholder="Enter Password"
+              onChange={handleChange}
+
+            />
+           </div>
+           <div className='form-group'>
+            <input 
+              type="passowrd"
+              className="form-control"
+              name="password2"
+              value={password2}
+              placeholder="Confirm Password"
+              onChange={handleChange}
+
+            />
+           </div>
+           <div className='form-group'>
+              <button type="submit" className='btn btn-block'>Submit</button>
+           </div>
+        </form>
+      </section>
     </>
   )
 }

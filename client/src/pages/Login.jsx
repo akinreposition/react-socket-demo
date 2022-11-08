@@ -1,65 +1,66 @@
-import React,{ useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { FaSignInAlt } from 'react-icons/fa'
 
-const Login = () => {
-    const [ userName, setUserName ] = useState('');
-    const [ password, setPassword ] =useState('');
-    const navigate = useNavigate();
+function Login() {
+  const [ formData, setFormData ] = useState({
+    email:'',
+    password:''
+  });
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        localStorage.setItem('userName', userName);
-        navigate('/products');
-        
-        // fetch("https://react-socket-demo-default-rtdb.firebaseio.com/auction.json",{
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({username : userName, password}),
-        // }).then((Response) =>{
-        //     if(Response.ok) {
-        //         navigate('/products');
-        //     }
-        // }).catch((error) => {
-        //     console.log(error);
-        // })
-    };
+  const { email, password } = formData;
 
-    return(
-        <div>
-            <form className='home__form' onSubmit={handleSubmit}>
-                <div>
-                    {/* <label htmlFor='username: ' className='home_label'>Username</label> */}
-                        <input 
-                            type="text"
-                            name="username"
-                            className="home__input"
-                            value={userName}
-                            placeholder="User name"
-                            onChange={e => setUserName(e.target.value)}
-                            required
-                            minLength={6}
-                        />
-                </div>
+  const onChange = (e) => {
+    setFormData((prevState) => (
+      {
+        ...prevState,
+        [e.target.name]: e.target.value
+      }
+    ))
+  };
+  const onSubmit = (e) => {
+    e.preventDeualt();  
+  }
+  return (
+    <>
+      <section className='heading container'>
+        <h1>
+          <FaSignInAlt /> Login
+        </h1>
+        <p>Login and make a Bid</p>
+      </section>
 
-                <div>
-                    {/* <label htmlFor='password: ' className='home_label'>Password</label> */}
-                        <input 
-                            type="text"
-                            name="password"
-                            className="home__input"
-                            value={password}
-                            placeholder="Password"
-                            onChange={e => setPassword(e.target.value)}
-                            required
-                            minLength={8}
-                        />
-                </div>
+      <section className='form'>
+        <form onSubmit={onSubmit}>
+           <div className='form-group'>
+            <input 
+              type="email"
+              className="form-control"
+              id="email"
+              value={email}
+              placeholder="Enter your email"
+              onChange={onChange}
 
-                <button className='home__cta'>SIGN IN</button>
-            </form>
-        </div>
-    );
+            />
+           </div>
+           <div className='form-group'>
+            <input 
+              type="passowrd"
+              className="form-control"
+              id="password"
+              value={password}
+              placeholder="Enter Password"
+              onChange={onChange}
+
+            />
+           </div>
+           
+           <div className='form-group'>
+              <button type="submit" className='btn btn-block'>Login</button>
+           </div>
+        </form>
+      </section>
+    </>
+  )
 }
+
 export default Login;
