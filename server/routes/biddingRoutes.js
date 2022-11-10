@@ -5,7 +5,7 @@ const {
   setBidding,  
   updateBidding,
   deleteBidding,
-} = require('../controllers/goalController')
+} = require('../controllers/bidController')
 
 const { protect } = require('../middleware/authMiddleware')
 

@@ -6,7 +6,7 @@ const User = require('../models/userModel')
 // @desc    Register new user
 // @route   POST /api/users
 // @access  Public
-const reqisterUser = asyncHandler(async(req, res) => {
+const registerUser = asyncHandler(async(req, res) => {
     const { name, email, password } = req.body;
 
     if(!name || !email || !password) {

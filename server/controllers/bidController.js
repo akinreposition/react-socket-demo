@@ -7,9 +7,9 @@ const User = require('../models/userModel')
 // @route   GET /api/bid
 // @access  Private
 const getBidding = asyncHandler(async (req, res) => {
-  const bid = await Bid.find({ user: req.user.id })
+  const bids = await Bid.find({ user: req.user.id })
 
-  res.status(200).json(bid)
+  res.status(200).json(bids)
 })
 
 // @desc    Set bid
@@ -67,7 +67,7 @@ const deleteBidding = asyncHandler(async (req, res) => {
 
   if (!bid) {
     res.status(400)
-    throw new Error('Goal not found')
+    throw new Error('Bid not found')
   }
 
   // Check for user
