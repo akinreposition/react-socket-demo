@@ -6,11 +6,13 @@ const User = require('../models/userModel')
 // @desc    Get bids
 // @route   GET /api/bid
 // @access  Private
-const getBidding = asyncHandler(async (req, res) => {
-  const bids = await Bid.find({ user: req.user.id })
 
-  res.status(200).json(bids)
-})
+// const getBidding = asyncHandler(async (req, res) => {
+//   const bids = await Bid.find({ user: req.user.id })
+
+//   res.status(200).json(bids)
+// })
+
 
 // @desc    Set bid
 // @route   POST /api/bid
@@ -87,9 +89,52 @@ const deleteBidding = asyncHandler(async (req, res) => {
   res.status(200).json({ id: req.params.id })
 })
 
+
+// @desc  Get Bids
+// routes GET /api/bids
+// access Private
+
+const getBids = asyncHandler(async (req, res) => {
+  res.status(200).json({ message: "Get bids controller"})
+})
+
+// @desc  Set Bid
+// routes POST /api/bids
+// access Private
+
+const setBid = asyncHandler(async (req, res) => {
+  if(!req.body) {
+    res.status(400)
+    throw new Error("Please add a text field")
+  }
+  
+  res.status(200).json({ message: 'Set Bid' })
+})
+
+// @desc  Update Bid
+// routes PUT /api/bids/:id
+// access Private
+
+const updateBid = asyncHandler(async (req, res) => {
+  res.status(200).json({ message: `Update bid ${req.params.id}` })
+})
+
+// @desc  Delete Bid
+// routes DELETE /api/bids/:id 
+// access Private
+
+const deleteBid = asyncHandler(async (req, res) => {
+  res.status(200).json({ message: `Delete Bids ${req.params.id}` })
+})
+
 module.exports = {
-  getBidding,
-  setBidding,
-  updateBidding,
-  deleteBidding,
+  getBids,
+  setBid,
+  updateBid,
+  deleteBid
+
+  // getBidding,
+  // setBidding,
+  // updateBidding,
+  // deleteBidding,
 }
