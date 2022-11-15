@@ -14,6 +14,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/bids', require('./routes/biddingRoutes'))
+app.use('/api/users', require('./routes/userRoutes'))
+// app.use('/api/products', require('./routes/productRoutes'))
 
 // // Serve frontend
 // if (process.env.NODE_ENV === 'production') {
@@ -27,11 +29,6 @@ app.use('/api/bids', require('./routes/biddingRoutes'))
 // } else {
 //   app.get('/', (req, res) => res.send('Please set to production'));
 // }
-
-
-// app.use('/api/bidding', require('./routes/biddingRoutes'));
-// app.use('/api/users', require('./routes/userRoutes'));
-
 
 app.use(errorHandler);
 

@@ -1,12 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { getBids, setBid, updateBid, deleteBid  } = require('../controllers/bidController')
-// const {
-  // getBidding,
-//   setBidding,  
-//   updateBidding,
-//   deleteBidding,
-// } = require('../controllers/bidController')
+
 
 // const { protect } = require('../middleware/authMiddleware')
 
