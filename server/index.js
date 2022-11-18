@@ -15,7 +15,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use('/api/bids', require('./routes/biddingRoutes'))
 app.use('/api/users', require('./routes/userRoutes'))
-// app.use('/api/products', require('./routes/productRoutes'))
+app.use('/api/products', require('./routes/productRoutes'))
 
 // // Serve frontend
 // if (process.env.NODE_ENV === 'production') {

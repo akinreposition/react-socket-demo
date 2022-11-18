@@ -8,7 +8,7 @@ const User = require('../models/userModel')
 // access Private
 
 const getBids = asyncHandler(async (req, res) => {
-  const bids = await Bid.find()
+  const bids = await Bid.find({ user: req.body.id })
   res.status(200).json(bids)
 }) 
 
@@ -17,13 +17,14 @@ const getBids = asyncHandler(async (req, res) => {
 // access Private
 
 const setBid = asyncHandler(async (req, res) => {
-  if(!req.body.text) {
+  if(!req.body) {
     res.status(400)
     throw new Error("Please add a text field")
   }
 
   const bid = await Bid.create({
-    text: req.body.text
+    bid: req.body.bid,
+    user: req.user.id
   })
   
   res.status(201).json(bid)
@@ -54,7 +55,7 @@ const deleteBid = asyncHandler(async (req, res) => {
   const bid = await Bid.findById(req.params.id)
 
   if(!bid) {
-    req.status(400)
+    res.status(400)
     throw new Error ("No Bid found")
   }
 

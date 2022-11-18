@@ -20,13 +20,14 @@ const bidSchema = mongoose.Schema(
         required: [true, 'Please enter price of product'],
     },
     owner: {
-        type: String,
+      type: mongoose.Schema.Types.ObjectId,
         required: [true, 'Please add product owner'],
+        ref: 'User'
     },
-    last_bidder: {
-        type: String,
-        required: [true, 'Please add product owner'],
-    },
+    // last_bidder: {
+    //     type: String,
+    //     required: [true, 'Please add product owner'],
+    // },
   },
   {
     timestamps: true,
