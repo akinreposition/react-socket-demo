@@ -45,12 +45,14 @@ const Register = () => {
   //     }
   //   ))
   // };
+
   const onSubmit = (e) => {
-    e.preventDeualt();  
-    if( password !== password2 ) {
+    e.preventDefault();  
+
+    if(password !== password2) {
       toast.error("Passwords do not match")
     } else {
-      const userData = { name, email, password }
+      const userData = {name,email,password}
       dispatch(register(userData))
     }
   }
@@ -74,6 +76,7 @@ const Register = () => {
             <input 
               type="text"
               className="form-control"
+              id='name'
               name="name"
               value={name}
               placeholder="Enter your name"
@@ -85,6 +88,7 @@ const Register = () => {
             <input 
               type="email"
               className="form-control"
+              id='email'
               name='email'
               value={email}
               placeholder="Enter your email"
@@ -96,6 +100,7 @@ const Register = () => {
             <input 
               type="passowrd"
               className="form-control"
+              id='password'
               name="password"
               value={password}
               placeholder="Enter Password"
@@ -107,6 +112,7 @@ const Register = () => {
             <input 
               type="passowrd"
               className="form-control"
+              id='password2'
               name="password2"
               value={password2}
               placeholder="Confirm Password"

@@ -7,12 +7,8 @@ import Spinner from '../components/Spinner';
 import { FaSignInAlt } from 'react-icons/fa'
 
 function Login() {
-  const [ formData, setFormData ] = useState({
-    email:'',
-    password:''
-  });
-
-  const { email, password } = formData;
+ const [email, setEmail] = useState('')
+ const [password, setPassword] = useState('')
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
@@ -33,16 +29,8 @@ function Login() {
 
   }, [user, isError, isSuccess, message, navigate, dispatch])
 
-  const onChange = (e) => {
-    setFormData((prevState) => (
-      {
-        ...prevState,
-        [e.target.name]: e.target.value
-      }
-    ))
-  };
   const onSubmit = (e) => {
-    e.preventDeualt();  
+    e.preventDefault(); 
 
     const userData = {
       email,
@@ -72,19 +60,17 @@ function Login() {
               id="email"
               value={email}
               placeholder="Enter your email"
-              onChange={onChange}
-
+              onChange={(e) => { setEmail(e.target.value)}}
             />
            </div>
            <div className='form-group'>
             <input 
-              type="passowrd"
+              type="password"
               className="form-control"
               id="password"
               value={password}
               placeholder="Enter Password"
-              onChange={onChange}
-
+              onChange={(e) => { setPassword(e.target.value)}}
             />
            </div>
            

@@ -41,6 +41,19 @@ const updateBid = asyncHandler(async (req, res) => {
     res.status(400)
     throw new Error("Bid not found")
   }
+
+  // Check for user
+  if(!req.user) {
+    res.status(401)
+    throw new Error('User not found')
+  }
+
+  // Make sure the logged in user matches the bid user
+  if(bid.user.toString() !== req.user.id) {
+    res.status(401)
+    throw new Error('User not authorized')
+  }
+
   const updatedBid = await Bid.findByIdAndUpdate(req.params.id, req.body, {
     new: true
   })
@@ -57,6 +70,18 @@ const deleteBid = asyncHandler(async (req, res) => {
   if(!bid) {
     res.status(400)
     throw new Error ("No Bid found")
+  }
+
+  // Check for user
+  if(!req.user) {
+    res.status(401)
+    throw new Error('User not found')
+  }
+
+  // Make sure the logged in user matches the bid user
+  if(bid.user.toString() !== req.user.id) {
+    res.status(401)
+    throw new Error('User not authorized')
   }
 
  await bid.remove()

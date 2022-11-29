@@ -2,10 +2,6 @@ const mongoose = require('mongoose')
 
 const bidSchema = mongoose.Schema(
   {
-    // text: {
-    //   type: String,
-    //   required: [true, 'Please add a text vaule'],
-    // },
     user: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,
@@ -19,11 +15,11 @@ const bidSchema = mongoose.Schema(
         type: Number,
         required: [true, 'Please enter price of product'],
     },
-    owner: {
-      type: mongoose.Schema.Types.ObjectId,
-        required: [true, 'Please add product owner'],
-        ref: 'User'
-    },
+    // owner: {
+    //   type: mongoose.Schema.Types.ObjectId,
+    //     required: [true, 'Please add product owner'],
+    //     ref: 'User'
+    // },
     // last_bidder: {
     //     type: String,
     //     required: [true, 'Please add product owner'],
