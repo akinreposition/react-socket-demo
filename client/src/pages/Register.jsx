@@ -81,9 +81,9 @@ const Register = () => {
               value={name}
               placeholder="Enter your name"
               onChange={handleChange}
-
             />
            </div>
+           
            <div className='form-group'>
             <input 
               type="email"
@@ -93,9 +93,9 @@ const Register = () => {
               value={email}
               placeholder="Enter your email"
               onChange={handleChange}
-
             />
            </div>
+
            <div className='form-group'>
             <input 
               type="passowrd"
@@ -105,9 +105,9 @@ const Register = () => {
               value={password}
               placeholder="Enter Password"
               onChange={handleChange}
-
             />
            </div>
+
            <div className='form-group'>
             <input 
               type="passowrd"
@@ -117,9 +117,9 @@ const Register = () => {
               value={password2}
               placeholder="Confirm Password"
               onChange={handleChange}
-
             />
            </div>
+           
            <div className='form-group'>
               <button type="submit" className='btn btn-block'>Submit</button>
            </div>

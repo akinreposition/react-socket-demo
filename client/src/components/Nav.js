@@ -50,7 +50,7 @@ const Nav = () => {
         <ul>
           {user ? (
             <li>
-              <button onClick={onLogout}>
+              <button  className="btn" onClick={onLogout}>
                 <FaSignOutAlt /> Logout
               </button>
             </li>
