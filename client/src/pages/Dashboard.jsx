@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import AddProduct from "../components/AddProduct";
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -14,7 +15,14 @@ function Dashboard() {
   }, [user, navigate])
   
   return (
-    <div>Dashboard</div>
+    <>
+      <section className="heading">
+        <h2>Welcome {user && user.name}</h2>
+        <p>Bid Dashboard</p>
+      </section>
+
+      <AddProduct />
+    </>
   )
 }
 

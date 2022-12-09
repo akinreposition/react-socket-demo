@@ -289,7 +289,7 @@ th {
 }
 .addproduct__container h2,
 .bidproduct__container h2 {
-  margin-bottom: 30px;
+  margin-bottom: 15px;
 }
 .addProduct__form,
 .bidProduct__form {
@@ -300,14 +300,16 @@ th {
 }
 .addProduct__cta,
 .bidProduct__cta {
-  width: 200px;
+  width: 60%;
   padding: 10px;
   font-size: 16px;
   outline: none;
-  border: none;
+  border:none;
+  border-radius: 5px;
   color: #fff;
   background-color: rgb(67, 143, 67);
   cursor: pointer;
+  
 }
 .bidProduct__name {
   margin-bottom: 20px;

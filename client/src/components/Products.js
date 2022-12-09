@@ -1,30 +1,43 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import Spinner from './Spinner';
+import { getProducts, reset } from '../features/product/productSlice';
+import { toast } from 'react-toastify';
 
-const Products = () => {
-    const [ products, setProducts ] = useState(null);
-    const [ loading, setLoading ] = useState(true);
+const Products = () => {    
+    const dispatch = useDispatch
     const navigate = useNavigate();
 
     const handleBidBtn = (product) => navigate(`/products/bid/${product.name}/${product.price}`);
 
-    useEffect(() => {
-        const fetchProducts = () => {
-            fetch('https://localhost:4000/api')
-            .then((res) => res.json)
-            .then((data) => {
-                setProducts(data.products);
-                setLoading(false);
-            });
-        };
-        fetchProducts();
-    },[]);
+    const { user } = useSelector((state) => state.auth)
+
+    const { product, isLoading, isSuccess, isError, message } = useSelector(
+        (state) => state.product)
+    
+        useEffect( () => {
+          if(isError) {
+            toast.error(message)
+          }
+    
+          if(isSuccess || product) {
+            toast.success("List of Product available")
+          }
+          
+          dispatch(reset())
+    
+        }, [ isError, isSuccess, message])   
+    
+    if (isLoading) {
+        return <Spinner />
+      }
 
     return (
         <div>
             <div className='table__container'>
-                <Link to="/products/add" className='products__cta'>
+                <Link to="/" className='products__cta'>
                     ADD PRODUCTS
                 </Link>
                 <table>
@@ -39,23 +52,26 @@ const Products = () => {
                     </thead>
                     {/* Data for display, we will later get it from the server */}
                     <tbody>
-                        {loading ? (
-                            <tr>
-                                <td>Loading</td>
-                            </tr>
-                        ) : (
-                            products.map((product) => (
+                         {
+                        //     loading ? (
+                        //     <tr>
+                        //         <td></td>
+                        //     </tr>
+                        // ) : 
+                        ( 
+                            product.map((product) => (
                                 <tr key={`${product.name}${product.price}`}>
                                     <td>{product.name}</td>
                                     <td>{product.price}</td>
                                     <td>{product.last_bidder || 'None'}</td>
-                                    <td>{product.owner}</td>
+                                    <td>{user}</td>
                                     <td>
                                         <button onClick={()=> handleBidBtn(product)}>Edit</button>
                                     </td>
                                 </tr>
                             ))
-                        )}
+                        )
+                        }
                     </tbody>
                 </table>
             </div>

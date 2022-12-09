@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
-// import AddProduct from "./components/AddProduct";
+import AddProduct from "./components/AddProduct";
 // import BidProduct from "./components/BidProduct";
 import Products from "./components/Products";
 import Nav from "./components/Nav";
@@ -31,7 +31,8 @@ function App ()  {
             <Route path="/products" element={<Products/>} />
             {/* <Route path="/products/add" element={<AddProduct socket={socket}/>} /> */}
               {/* Uses dynamic routing  */}
-            {/* <Route path="products/bid/:name/:price" element={<BidProduct socket={socket} />} /> */}
+            {/* <Route path="products/bid/:name/:pr
+            ice" element={<BidProduct socket={socket} />} /> */}
           </Routes>
         </div>
       </Router>

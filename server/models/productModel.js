@@ -7,7 +7,7 @@ const productSchema = mongoose.Schema(
             required: true,
             ref: 'User',
         },
-        productName: {
+        name: {
             type: String,
             required: [true, 'Please add product name']
         },

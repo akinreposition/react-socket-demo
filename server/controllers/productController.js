@@ -17,12 +17,13 @@ const getProduct = asyncHandler( async (req, res) => {
 // access Private
 
 const setProduct = asyncHandler( async (req, res) => {
-    if (!req.body.product) {
+    const { name, price } = req.body;
+    if (!name || !price) {
         res.status(400)
-        throw new Error("Please add Product")
+        throw new Error("Please add Product Details")
     }
     const product = await Product.create({
-        product: req.body.product
+        product: req.body
     })
     res.status(201).json(product)
 })

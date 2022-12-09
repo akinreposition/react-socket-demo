@@ -1,10 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './features/authentication/authSlice'
-import bidReducer from './features/bid/bidSlice'
+import productReducer from './features/product/productSlice'
 
 export default configureStore({
     reducer: {
         auth: authReducer,
-        bid: bidReducer
+        product: productReducer
     }
 })
