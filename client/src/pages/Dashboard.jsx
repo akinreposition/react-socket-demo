@@ -15,14 +15,18 @@ function Dashboard() {
   }, [user, navigate])
   
   return (
-    <>
-      <section className="heading">
-        <h2>Welcome {user && user.name}</h2>
-        <p>Bid Dashboard</p>
+    <div className="container">
+      <section className="heading text-align">
+        <span>Welcome {user && user.name}</span>
+        <p>Product Dashboard</p>
       </section>
 
       <AddProduct />
-    </>
+
+      <section className="content">
+        {/* {product.length > 0 ? () : () } */}
+      </section>
+    </div>
   )
 }
 

@@ -43,8 +43,8 @@ function Login() {
     return <Spinner />
   }
   return (
-    <>
-      <section className='heading container'>
+    <div className='container'>
+      <section className='heading mx-auto'>
         <h1>
           <FaSignInAlt /> Login
         </h1>
@@ -79,7 +79,7 @@ function Login() {
            </div>
         </form>
       </section>
-    </>
+    </div>
   )
 }
 

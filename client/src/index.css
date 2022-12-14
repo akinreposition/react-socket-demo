@@ -38,10 +38,19 @@ h3 {
 }
 
 .container {
-  width: 100%;
+  width: 50%;
   max-width: 960px;
   margin: 0 auto;
   padding: 0 20px;
+  text-align: center;
+}
+
+.mx-auto {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.text-align {
   text-align: center;
 }
 
@@ -58,6 +67,7 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-right: 50px;
 }
 
 .logo {
@@ -137,7 +147,7 @@ h3 {
 .form-group label {
   text-align: left;
   display: block;
-  margin: 0 0 5px 3px;
+  margin: 0 0 5px 50px;
 }
 
 .btn {
@@ -217,11 +227,16 @@ h3 {
   .heading p {
     font-size: 1.5rem;
   }
+  .form-group label {
+    text-align: left;
+    display: block;
+    margin: 0 0 5px 20px;
+  }
 }
 /* --------Stylesheet for the Home component ------*/
 .addProduct__form input,
 .bidProduct__form input {
-  width: 60%;
+  width: 80%;
   padding: 10px;
   border-radius: 5px;
   margin: 15px 0;
@@ -300,7 +315,7 @@ th {
 }
 .addProduct__cta,
 .bidProduct__cta {
-  width: 60%;
+  width: 80%;
   padding: 10px;
   font-size: 16px;
   outline: none;

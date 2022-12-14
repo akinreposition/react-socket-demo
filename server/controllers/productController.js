@@ -1,14 +1,14 @@
 const asyncHandler = require('express-async-handler')
 
-const Proudct = require('../models/productModel')
-const User = require('../models/userModel')
+const Product = require('../models/productModel')
+// const User = require('../models/userModel')
 
 // @desc  Get Products
 // routes GET /api/products
 // access Private
 
 const getProduct = asyncHandler( async (req, res) => {
-    const products = await Proudct.find()
+    const products = await Product.find()
     res.status(200).json(products)
 })
 
@@ -17,13 +17,15 @@ const getProduct = asyncHandler( async (req, res) => {
 // access Private
 
 const setProduct = asyncHandler( async (req, res) => {
-    const { name, price } = req.body;
-    if (!name || !price) {
+    const { name, price, user } = req.body;
+    if (!name || !price || !user) {
         res.status(400)
         throw new Error("Please add Product Details")
     }
+    
     const product = await Product.create({
-        product: req.body
+        product: req.body,
+        // user: req.body
     })
     res.status(201).json(product)
 })

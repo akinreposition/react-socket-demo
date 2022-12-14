@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector } from 'react-redux';
-import { createProduct, reset } from '../features/product/productSlice'
+import { createProduct, getProducts, reset } from '../features/product/productSlice'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner';
 
@@ -19,16 +19,18 @@ const AddProduct = () => {
     const { product, isLoading, isSuccess, isError, message } = useSelector(
         (state) => state.product)
     
-        useEffect( () => {
+        useEffect(() => {
           if(isError) {
             toast.error(message)
           }
     
-          if(isSuccess || product) {
-            // navigate('/products')
+        //   if(isSuccess || product) {
+        //     navigate('/products')
+        //   }
+         
+          return () => {
+            dispatch(reset())
           }
-          
-          dispatch(reset())
     
         }, [productInfo, isError, isSuccess, message, navigate, dispatch])
 
@@ -40,7 +42,11 @@ const AddProduct = () => {
         e.preventDefault();
 
         dispatch(createProduct(productInfo));
-
+        console.log(productInfo);
+        setProductInfo({
+            name: "",
+            price: ""
+        })
         // console.log({ name, price, owner: localStorage.getItem('userName') });
         // fetch("https://react-socket-demo-default-rtdb.firebaseio.com/auction/addProducts.json",{
         //     method: 'POST',

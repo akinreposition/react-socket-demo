@@ -62,8 +62,8 @@ const Register = () => {
   }
   
   return (
-    <>
-      <section className='heading container'>
+    <div className='container'>
+      <section className='heading mx-auto'>
         <h1>
           <FaUser /> Register
         </h1>
@@ -125,7 +125,7 @@ const Register = () => {
            </div>
         </form>
       </section>
-    </>
+    </div>
   )
 }
 

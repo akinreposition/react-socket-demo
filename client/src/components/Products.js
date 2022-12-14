@@ -6,8 +6,9 @@ import Spinner from './Spinner';
 import { getProducts, reset } from '../features/product/productSlice';
 import { toast } from 'react-toastify';
 
-const Products = () => {    
-    const dispatch = useDispatch
+const Products = () => {   
+    // const [ product, setProduct ] = useState()
+    // const dispatch = useDispatch
     const navigate = useNavigate();
 
     const handleBidBtn = (product) => navigate(`/products/bid/${product.name}/${product.price}`);
@@ -25,8 +26,6 @@ const Products = () => {
           if(isSuccess || product) {
             toast.success("List of Product available")
           }
-          
-          dispatch(reset())
     
         }, [ isError, isSuccess, message])   
     
