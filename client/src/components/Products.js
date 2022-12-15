@@ -15,7 +15,7 @@ const Products = () => {
 
     const { user } = useSelector((state) => state.auth)
 
-    const { product, isLoading, isSuccess, isError, message } = useSelector(
+    const { products, isLoading, isSuccess, isError, message } = useSelector(
         (state) => state.product)
     
         useEffect( () => {
@@ -23,7 +23,7 @@ const Products = () => {
             toast.error(message)
           }
     
-          if(isSuccess || product) {
+          if(isSuccess || products) {
             toast.success("List of Product available")
           }
     
@@ -58,7 +58,7 @@ const Products = () => {
                         //     </tr>
                         // ) : 
                         ( 
-                            product.map((product) => (
+                            products.map((product) => (
                                 <tr key={`${product.name}${product.price}`}>
                                     <td>{product.name}</td>
                                     <td>{product.price}</td>

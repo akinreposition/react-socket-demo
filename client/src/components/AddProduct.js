@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useDispatch, useSelector } from 'react-redux';
-import { createProduct, getProducts, reset } from '../features/product/productSlice'
+import { createProduct, reset } from '../features/product/productSlice'
 import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner';
 
@@ -16,8 +16,8 @@ const AddProduct = () => {
     const dispatch = useDispatch();
 
     
-    const { product, isLoading, isSuccess, isError, message } = useSelector(
-        (state) => state.product)
+    const { isLoading, isSuccess, isError, message } = useSelector(
+        (state) => state.products)
     
         useEffect(() => {
           if(isError) {
