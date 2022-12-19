@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import {useDispatch, useSelector } from 'react-redux';
-import { createProduct, reset } from '../features/product/productSlice'
-import { toast } from 'react-toastify'
+import React, { useState } from 'react';
+// import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { createProduct } from '../features/product/productSlice'
+// import { toast } from 'react-toastify'
 import Spinner from '../components/Spinner';
 
 const AddProduct = () => {
@@ -12,27 +12,23 @@ const AddProduct = () => {
     })
 
     const { name, price } = productInfo;
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
     const dispatch = useDispatch();
 
     
-    const { isLoading, isSuccess, isError, message } = useSelector(
+    const { isLoading } = useSelector(
         (state) => state.products)
     
-        useEffect(() => {
-          if(isError) {
-            toast.error(message)
-          }
+        // useEffect(() => {
+        //   if(isError) {
+        //     toast.error(message)
+        //   }
     
-        //   if(isSuccess || product) {
+        //   if(isSuccess || products) {
         //     navigate('/products')
         //   }
-         
-          return () => {
-            dispatch(reset())
-          }
     
-        }, [productInfo, isError, isSuccess, message, navigate, dispatch])
+        // }, [isError, isSuccess, message, navigate, dispatch])
 
     const onChange = e => {
         setProductInfo({...productInfo, [e.target.name]: e.target.value })
@@ -79,7 +75,7 @@ const AddProduct = () => {
                 <h2>Add a new product</h2>
                 <form className='addProduct__form' onSubmit={handleSubmit}>
                     <div className='form-group'>
-                        <label htmfor='name'>Name of the product</label>
+                        <label htmfor='name'>Product Name</label>
                         <input 
                             type="text"
                             name="name"

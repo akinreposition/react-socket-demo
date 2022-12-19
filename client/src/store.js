@@ -5,6 +5,6 @@ import productReducer from './features/product/productSlice'
 export default configureStore({
     reducer: {
         auth: authReducer,
-        product: productReducer
+        products: productReducer
     }
 })

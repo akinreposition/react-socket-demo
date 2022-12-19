@@ -8,7 +8,7 @@ const Product = require('../models/productModel')
 // access Private
 
 const getProduct = asyncHandler( async (req, res) => {
-    const products = await Product.find()
+    const products = await Product.find({user: req.body.id})
     res.status(200).json(products)
 })
 
@@ -17,15 +17,15 @@ const getProduct = asyncHandler( async (req, res) => {
 // access Private
 
 const setProduct = asyncHandler( async (req, res) => {
-    const { name, price, user } = req.body;
-    if (!name || !price || !user) {
+    // const { name, price, user } = req.body;
+    if (!req.body) {
         res.status(400)
         throw new Error("Please add Product Details")
     }
     
     const product = await Product.create({
-        product: req.body,
-        // user: req.body
+        product: req.body.product,
+        user: req.body.id
     })
     res.status(201).json(product)
 })
@@ -38,9 +38,22 @@ const updateProduct = asyncHandler(async (req, res) => {
     const product = await Product.findById(req.params.id)
 
     if(!product) {
-        res.status(404)
+        res.status(400)
         throw new Error("Product not found")
     }
+
+    // Check for user
+    if(!req.user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    // Make sure the logged in user matches the product user
+    if(product.user.toString() !== req.user.id) {
+        res.status(401)
+        throw new Error('User not authorized')
+    }
+
     const updateProduct = await Product.findByIdAndUpdate(req.params.id, req.body, {
         new: true
     })
@@ -60,6 +73,18 @@ const deleteProduct = asyncHandler(async (req, res) => {
         throw new Error("No Product Found!")
     }
 
+    // Check for user
+    if(!req.user) {
+        res.status(401)
+        throw new Error('User not found')
+    }
+
+    // Make sure the logged in user matches the product user
+    if(product.user.toString() !== req.user.id) {
+        res.status(401)
+        throw new Error('User not authorized')
+    }
+    
     await product.remove()
     res.status(200).json({ id: req.params.id })
 })

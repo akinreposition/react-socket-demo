@@ -57,7 +57,7 @@ const Nav = () => {
           ) : (
             <>
               <li>
-                <Link to='/login'>
+                <Link to='/'>
                   <FaSignInAlt /> Login
                 </Link>
               </li>

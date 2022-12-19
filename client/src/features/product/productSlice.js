@@ -10,7 +10,7 @@ const initialState = {
 }
 
 // Create new product
-export const createProduct = createAsyncThunk('product/create', async (productData, thunkAPI) => {
+export const createProduct = createAsyncThunk('products/create', async (productData, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token
         return await productService.createProduct(productData, token)
@@ -22,7 +22,7 @@ export const createProduct = createAsyncThunk('product/create', async (productDa
 })
 
 // Get user products
-export const getProducts = createAsyncThunk('product/getAll', async (_, thunkAPI) => {
+export const getProducts = createAsyncThunk('products/getAll', async (_, thunkAPI) => {
     try {
         const token = thunkAPI.getState().auth.user.token
         return await productService.getProducts(token)
@@ -33,8 +33,20 @@ export const getProducts = createAsyncThunk('product/getAll', async (_, thunkAPI
     }
 })
 
+// Delete user product
+export const deleteProduct = createAsyncThunk('products/delete', async (id, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await productService.deleteProduct(id, token)
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) ||
+        error.message || error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 export const productSlice = createSlice({
-    name: 'products',
+    name: 'product',
     initialState,
     reducers: {
         reset: (state) => initialState
@@ -48,7 +60,7 @@ export const productSlice = createSlice({
         .addCase(createProduct.fulfilled, (state, action) => {
             state.isLoading = false
             state.isSuccess = true
-            state.product.push(action.payload)
+            state.products.push(action.payload)
         })
         .addCase(createProduct.rejected, (state, action) => {
             state.isLoading = false
@@ -62,9 +74,23 @@ export const productSlice = createSlice({
         .addCase(getProducts.fulfilled, (state, action) => {
             state.isLoading = false
             state.isSuccess = true
-            state.product = action.payload
+            state.products = action.payload
         })
         .addCase(getProducts.rejected, (state, action) => {
+            state.isLoading = false
+            state.isError = true
+            state.message = action.payload
+        })
+        // delete product
+        .addCase( deleteProduct.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase( deleteProduct.fulfilled, (state, action) => {
+            state.isLoading = false
+            state.isSuccess = true
+            state.products = state.products.filter((product) => product._id !== action.payload.id)
+        })
+        .addCase( deleteProduct.rejected, (state, action) => {
             state.isLoading = false
             state.isError = true
             state.message = action.payload
