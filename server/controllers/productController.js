@@ -1,10 +1,10 @@
 const asyncHandler = require('express-async-handler')
 
 const Product = require('../models/productModel')
-// const User = require('../models/userModel')
+const User = require('../models/userModel')
 
 // @desc  Get Products
-// routes GET /api/products
+// route GET /api/products
 // access Private
 
 const getProduct = asyncHandler( async (req, res) => {
@@ -12,26 +12,35 @@ const getProduct = asyncHandler( async (req, res) => {
     res.status(200).json(products)
 })
 
-// @desc  Post Product
-// routes POST /api/products
+// @desc  Set Product
+// route POST /api/products
 // access Private
 
 const setProduct = asyncHandler( async (req, res) => {
-    // const { name, price, user } = req.body;
-    if (!req.body) {
+    const { name, price, user } = req.body;
+    if (!name || !price || user) {
         res.status(400)
         throw new Error("Please add Product Details")
     }
+    // if (!req.body.product) {
+    //     res.status(400)
+    //     throw new Error("Please add Product Details")
+    // }
     
     const product = await Product.create({
-        product: req.body.product,
+        product: req.body,
         user: req.body.id
     })
+    // const product = new Product({
+    //     product: req.body,
+    //     user: req.body.id
+    // })
+    console.log(product)
     res.status(201).json(product)
 })
 
 // @desc  Update Product
-// routes PUT /api/products/:id
+// route PUT /api/products/:id
 // access Private
 
 const updateProduct = asyncHandler(async (req, res) => {
@@ -62,7 +71,7 @@ const updateProduct = asyncHandler(async (req, res) => {
 })
 
 // @desc  Delete Product
-// routes DELETE /api/products/:id
+// route DELETE /api/products/:id
 // access Private
 
 const deleteProduct = asyncHandler(async (req, res) => {

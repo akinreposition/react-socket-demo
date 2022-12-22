@@ -89,7 +89,7 @@ const AddProduct = () => {
                     <div className='form-group'>
                         <label htmlFor='price'>Starting price</label>
                         <input 
-                            type="text"
+                            type="number"
                             name="price"
                             value={price}
                             onChange={onChange}

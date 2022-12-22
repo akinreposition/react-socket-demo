@@ -37,14 +37,12 @@ const Nav = () => {
     const onLogout = () => {
       dispatch(logout())
       dispatch(reset())
-      navigate('/')
+      navigate('/login')
     }
     return (
       <header className='header'>
         <div className='logo'>
-          <Link to="/">
-            <img src={auction}  width="25px" height="25px" alt='auc' title='Auction Bidding' />
-          </Link>
+          <img src={auction}  width="25px" height="25px" alt='auc' title='Auction Bidding' />
         </div>
 
         <ul>
@@ -57,7 +55,7 @@ const Nav = () => {
           ) : (
             <>
               <li>
-                <Link to='/'>
+                <Link to='/login'>
                   <FaSignInAlt /> Login
                 </Link>
               </li>

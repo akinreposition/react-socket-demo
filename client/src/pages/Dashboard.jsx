@@ -14,12 +14,12 @@ function Dashboard() {
   const { products, isLoading, isError, message } = useSelector((state) => state.products)
 
   useEffect(() =>{
-    // if(isError) {
-    //   console.log(message)
-    // }
+    if(isError) {
+      console.log(message)
+    }
 
     if(!user) {
-      navigate('/')
+      navigate('/login')
     }
 
     dispatch(getProducts())

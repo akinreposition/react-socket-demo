@@ -7,9 +7,9 @@ function ProductItem({product}) {
   return (
     <div className='goal'>
         <div>{new Date(product.createdAt).toLocaleString('en-US')}</div>
-        <h2>{product.name}</h2>
-        <h3>{product.price}</h3>
-        <h4 >{product.user}</h4>
+        <h2 key={product.name}>{product.name}</h2>
+        <h3 key={product.price}>{product.price}</h3>
+        <h4 key={product.id}>{product.user}</h4>
         <button onClick={() => dispatch(deleteProduct(product._id))} className="close">X</button>
     </div>
   )

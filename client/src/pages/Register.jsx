@@ -27,7 +27,7 @@ const Register = () => {
       }
 
       if(isSuccess || user) {
-        navigate('/')
+        navigate('/login')
       }
 
       dispatch(reset())
@@ -98,7 +98,7 @@ const Register = () => {
 
            <div className='form-group'>
             <input 
-              type="passowrd"
+              type="password"
               className="form-control"
               id='password'
               name="password"
@@ -110,7 +110,7 @@ const Register = () => {
 
            <div className='form-group'>
             <input 
-              type="passowrd"
+              type="password"
               className="form-control"
               id='password2'
               name="password2"
